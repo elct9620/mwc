@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'mwc/utils/hash_accessor'
+
 module Mwc
   module Utils
     # Extend option class
@@ -8,36 +10,12 @@ module Mwc
       def self.included(base)
         base.class_eval do
           extend ClassMethods
+          include HashAccessor
 
           def initialize(parent)
             @parent = parent
           end
         end
-      end
-
-      # Hash-like getter
-      #
-      # @param name [String|Symbol] the option name
-      #
-      # @since 0.3.0
-      # @api private
-      def [](name)
-        return unless respond_to?(name)
-
-        send(name)
-      end
-
-      # Hash-like setter
-      #
-      # @param name [String|Symbol] the option name
-      # @param value [Object] the option value
-      #
-      # @since 0.3.0
-      # @api private
-      def []=(name, value)
-        return unless respond_to?("#{name}=")
-
-        send("#{name}=", value)
       end
 
       # :nodoc:
@@ -49,6 +27,8 @@ module Mwc
         # @since 0.3.0
         # @api private
         def option(name, options = {})
+          return create_array_option(name, options) if options[:array] == true
+
           option_reader(name, options)
           option_writer(name, options)
         end
@@ -61,8 +41,11 @@ module Mwc
         # @since 0.3.0
         # @api private
         def cast(value, type)
+          return if value.nil?
+
           case type
           when :path then Mwc.root.join(value)
+          when :bool then value == true
           else value
           end
         end
@@ -83,6 +66,16 @@ module Mwc
               "@#{name}",
               self.class.cast(value, options[:type])
             )
+          end
+        end
+
+        def create_array_option(name, options = {})
+          define_method name do |value = nil|
+            current = instance_variable_get("@#{name}")&.dup || []
+            return current.concat(@parent&.send(name) || []).uniq if value.nil?
+
+            current.push self.class.cast(value, options[:type])
+            instance_variable_set("@#{name}", current)
           end
         end
       end

@@ -32,10 +32,9 @@ module Mwc
     # @since 0.2.0
     # @api private
     def setup_shell
-      return if Mwc.config.project.shell.nil?
+      return if Mwc.project.shell.nil?
 
-      path = Mwc.root.join(Mwc.config.project.shell)
-      @options.push "--shell-file #{path}"
+      @options.push "--shell-file #{Mwc.project.shell}"
     end
 
     # Setup source map
@@ -43,7 +42,7 @@ module Mwc
     # @since 0.2.0
     # @api private
     def setup_source_map
-      return unless Mwc.config.project.source_map
+      return unless Mwc.project.source_map
 
       @options.push '-g4 --source-map-base /'
     end
@@ -53,10 +52,10 @@ module Mwc
     # @since 0.2.0
     # @api private
     def setup_extra
-      return unless Mwc.config.project.options.any?
+      return unless Mwc.project.options.any?
 
-      Mwc.config.project.options.each do |name, value|
-        @options.push "-s #{name}=#{value}"
+      Mwc.project.options.each do |option|
+        @options.push option
       end
     end
 
@@ -88,7 +87,7 @@ module Mwc
     # @since 0.1.0
     # @api private
     def output(format)
-      @options.push "-o dist/#{Mwc.config.project.name}.#{format}"
+      @options.push "-o dist/#{Mwc.project.name}.#{format}"
     end
   end
 end

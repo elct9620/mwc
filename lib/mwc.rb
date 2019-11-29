@@ -77,7 +77,7 @@ module Mwc
     config.default
   end
 
-  # Current mruby preference
+  # Current mruby preferences
   #
   # @return [Mwc::Options::MRuby] the mruby options
   #
@@ -85,5 +85,15 @@ module Mwc
   # @api private
   def self.mruby
     environment.mruby
+  end
+
+  # Current project preferences
+  #
+  # @return [Mwc::Options::Project] the project options
+  #
+  # @since 0.3.0
+  # @api private
+  def self.project
+    environment.project
   end
 end

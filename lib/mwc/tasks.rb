@@ -77,7 +77,7 @@ module Mwc
 
     # :nodoc:
     def mruby_directory
-      Mwc.config.mruby.path
+      Mwc.mruby.path
     end
   end
 end

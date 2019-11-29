@@ -9,8 +9,9 @@ module Mwc
       include Utils::Option
 
       option :name
-      option :source_map # TODO: Specify type: Boolean
-      option :shell
+      option :source_map, type: :bool
+      option :shell, type: :path
+      option :options, array: true
     end
   end
 end

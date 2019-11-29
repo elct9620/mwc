@@ -17,7 +17,7 @@ module Mwc
         Rack::Static.new(
           ->(_) { [404, {}, []] },
           root: 'dist', # TODO: Set by config
-          index: "#{Mwc.config.project.name}.html",
+          index: "#{Mwc.project.name}.html",
           urls: [''],
           header_rules: [
             [WASM_RULE, WASM_HEADER]
