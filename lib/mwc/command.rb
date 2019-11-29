@@ -13,6 +13,8 @@ module Mwc
   class Command < Thor
     include Utils::CommandRegistry
 
+    class_option :env, desc: 'the prefer environment'
+
     desc 'version', 'show version'
     def version
       puts Mwc::VERSION

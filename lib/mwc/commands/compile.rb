@@ -18,8 +18,10 @@ module Mwc
       add_option :format, default: 'html', enum: %w[html js wasm]
 
       def compile
-        Tasks.new
-        Rake::Task[parent_options['format']].invoke
+        Mwc.use(parent_options['env']) do
+          Tasks.new
+          Rake::Task[parent_options['format']].invoke
+        end
       end
     end
   end

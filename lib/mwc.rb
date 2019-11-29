@@ -7,6 +7,10 @@ require 'mwc/config'
 
 # WebAssembly compile tool for mruby
 module Mwc
+  # @since 0.3.0
+  # @api private
+  LOCK = Mutex.new
+
   # The project root
   #
   # @return [Pathname] the root
@@ -64,6 +68,21 @@ module Mwc
       .to_s
   end
 
+  # Use prefer environment
+  #
+  # @param name [String] prefer environment
+  # @param block [Proc] the block execute under this environment
+  #
+  # @since 0.3.0
+  # @api private
+  def self.use(env, &_block)
+    LOCK.synchronize do
+      @env = env&.to_sym
+      yield
+      @env = nil
+    end
+  end
+
   # Current environment
   #
   # @see Mwc::Environment
@@ -73,8 +92,9 @@ module Mwc
   # @since 0.3.0
   # @api private
   def self.environment
-    # TODO: Switch by environment
-    config.default
+    return config.default if @env.nil?
+
+    config.environments[@env] || config.default
   end
 
   # Current mruby preferences

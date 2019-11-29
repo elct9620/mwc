@@ -11,7 +11,7 @@ module Mwc
   class Environment
     # @since 0.3.0
     # @api private
-    attr_reader :project, :mruby
+    attr_reader :environments, :project, :mruby
 
     # @since 0.3.0
     # @api private
@@ -33,7 +33,7 @@ module Mwc
     def env(name, &block)
       return if @parent
 
-      @environments[name] = Environment.new(self, &block)
+      @environments[name.to_sym] = Environment.new(self, &block)
     end
   end
 end

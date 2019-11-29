@@ -1,11 +1,19 @@
 # frozen_string_literal: true
 
+require 'forwardable'
+
 require 'mwc/environment'
 require 'mwc'
 
 module Mwc
   # The compile preferences
   class Config
+    extend Forwardable
+
+    # @since 0.3.0
+    # @api private
+    delegate %i[environments] => :@default
+
     # @since 0.3.0
     # @api private
     LOCK = Mutex.new
