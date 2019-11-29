@@ -19,7 +19,6 @@ module Masm
 
     include Singleton
 
-    attr_accessor :name
     attr_reader :mruby
 
     # :nodoc:
@@ -28,6 +27,19 @@ module Masm
       @name = 'mruby' # TODO: Allow change
       @mruby = {} # TODO: Allow configure
       load_config if exist?
+    end
+
+    # TODO: Move to DSL module
+    # Set name
+    #
+    # @param name [String|NilClass] the name
+    #
+    # @since 0.1.0
+    # @api private
+    def name(name = nil)
+      return @name if name.nil?
+
+      @name = name.to_s
     end
 
     # Check config file exists
@@ -59,6 +71,7 @@ module Masm
     # @since 0.1.0
     # @api private
     def load_config
+      # TODO: Improve config DSL
       instance_eval(@path.read)
     end
   end
