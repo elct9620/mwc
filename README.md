@@ -82,7 +82,7 @@ end
 ### Project
 
 |Name|Type|Description
-|----|-----------
+|----|----|-----------
 |name|string| The project name, will change the generated file name. ex. `mruby.wasm`
 |shell|string| The shell file template, if you want to use your own html template
 |source_map|boolean| Enable source map for debug
@@ -91,8 +91,13 @@ end
 ### mruby
 
 |Name|Type|Description
-|----|-----------
+|----|----|-----------
 |version|string| The prefer mruby version
+
+## Roadmap
+
+* [ ] Add mruby download options
+* [ ] Add integerate to JavaScript tool
 
 ## Development
 
