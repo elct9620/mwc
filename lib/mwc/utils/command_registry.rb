@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Mwasm
+module Mwc
   module Utils
     # The helper to register command on thor
     module CommandRegistry

@@ -3,11 +3,11 @@
 require 'forwardable'
 require 'singleton'
 
-require 'mwasm/project'
-require 'mwasm/mruby'
-require 'mwasm'
+require 'mwc/project'
+require 'mwc/mruby'
+require 'mwc'
 
-module Mwasm
+module Mwc
   # The compile preferences
   class Config
     class << self
@@ -25,7 +25,7 @@ module Mwasm
 
     # :nodoc:
     def initialize
-      @path = Mwasm.root.join('.mwasmrc')
+      @path = Mwc.root.join('.mwcrc')
       @project = Project.new
       @mruby = MRuby.new
 
@@ -61,7 +61,7 @@ module Mwasm
     # @api private
     def reload!
       # TODO: Update path when root changed
-      @path = Mwasm.root.join('.mwasmrc')
+      @path = Mwc.root.join('.mwcrc')
       return unless exist?
 
       load_config
@@ -69,7 +69,7 @@ module Mwasm
 
     private
 
-    # Laod .mwasmrc config
+    # Laod .mwcrc config
     #
     # @since 0.1.0
     # @api private

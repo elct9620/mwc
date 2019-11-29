@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
-require 'mwasm'
+require 'mwc'
 
-module Mwasm
+module Mwc
   # MRuby config
   class MRuby
     attr_accessor :version
 
     def path
-      Mwasm.root.join('vendor/mruby')
+      Mwc.root.join('vendor/mruby')
     end
   end
 end

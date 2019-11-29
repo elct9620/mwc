@@ -2,11 +2,11 @@
 
 require 'pathname'
 
-require 'mwasm/version'
-require 'mwasm/config'
+require 'mwc/version'
+require 'mwc/config'
 
 # WebAssembly compile tool for mruby
-module Mwasm
+module Mwc
   # The project root
   #
   # @return [Pathname] the root
@@ -31,14 +31,14 @@ module Mwasm
     @root = Pathname.new(path)
   end
 
-  # The mwasm config
+  # The mwc config
   #
-  # @return [Mwasm::Config] the config
+  # @return [Mwc::Config] the config
   #
   # @since 0.1.0
   # @api private
   def self.config
-    Mwasm::Config.instance
+    Mwc::Config.instance
   end
 
   # The thor template source root
@@ -50,7 +50,7 @@ module Mwasm
   def self.source_root
     Pathname
       .new(File.dirname(__FILE__))
-      .join('mwasm', 'templates')
+      .join('mwc', 'templates')
       .to_s
   end
 end

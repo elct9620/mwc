@@ -2,5 +2,5 @@
 
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in mwasm.gemspec
+# Specify your gem's dependencies in mwc.gemspec
 gemspec

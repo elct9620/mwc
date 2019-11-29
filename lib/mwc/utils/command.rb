@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'mwasm'
+require 'mwc'
 
-module Mwasm
+module Mwc
   module Utils
     # The command extensions
     module Command
@@ -75,14 +75,14 @@ module Mwasm
 
         # The thor template source root
         #
-        # @see Mwasm.source_root
+        # @see Mwc.source_root
         #
         # @return [String] the source root path
         #
         # @since 0.1.0
         # @api private
         def source_root
-          Mwasm.source_root
+          Mwc.source_root
         end
 
         # The command options

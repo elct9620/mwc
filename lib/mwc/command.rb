@@ -2,20 +2,20 @@
 
 require 'thor'
 
-require 'mwasm/utils/command_registry'
-require 'mwasm/config'
-require 'mwasm/commands/init'
-require 'mwasm/commands/compile'
-require 'mwasm/commands/server'
+require 'mwc/utils/command_registry'
+require 'mwc/config'
+require 'mwc/commands/init'
+require 'mwc/commands/compile'
+require 'mwc/commands/server'
 
-module Mwasm
+module Mwc
   # :nodoc:
   class Command < Thor
     include Utils::CommandRegistry
 
     desc 'version', 'show version'
     def version
-      puts Mwasm::VERSION
+      puts Mwc::VERSION
     end
 
     add_command Commands::Init

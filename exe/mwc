@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
-require 'mwasm/command'
+require 'mwc/command'
 
-Mwasm::Command.start(ARGV)
+Mwc::Command.start(ARGV)

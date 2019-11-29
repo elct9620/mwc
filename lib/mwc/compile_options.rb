@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'mwasm'
+require 'mwc'
 
-module Mwasm
+module Mwc
   # The compile options
   class CompileOptions
     # :nodoc:
@@ -32,9 +32,9 @@ module Mwasm
     # @since 0.2.0
     # @api private
     def setup_shell
-      return if Mwasm.config.project.shell.nil?
+      return if Mwc.config.project.shell.nil?
 
-      path = Mwasm.root.join(Mwasm.config.project.shell)
+      path = Mwc.root.join(Mwc.config.project.shell)
       @options.push "--shell-file #{path}"
     end
 
@@ -43,7 +43,7 @@ module Mwasm
     # @since 0.2.0
     # @api private
     def setup_source_map
-      return unless Mwasm.config.project.source_map
+      return unless Mwc.config.project.source_map
 
       @options.push '-g4 --source-map-base /'
     end
@@ -53,9 +53,9 @@ module Mwasm
     # @since 0.2.0
     # @api private
     def setup_extra
-      return unless Mwasm.config.project.options.any?
+      return unless Mwc.config.project.options.any?
 
-      Mwasm.config.project.options.each do |name, value|
+      Mwc.config.project.options.each do |name, value|
         @options.push "-s #{name}=#{value}"
       end
     end
@@ -88,7 +88,7 @@ module Mwasm
     # @since 0.1.0
     # @api private
     def output(format)
-      @options.push "-o dist/#{Mwasm.config.project.name}.#{format}"
+      @options.push "-o dist/#{Mwc.config.project.name}.#{format}"
     end
   end
 end

@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'mwasm/utils/command'
-require 'mwasm'
+require 'mwc/utils/command'
+require 'mwc'
 
-module Mwasm
+module Mwc
   module Commands
     # Create a new project
     class Init < Thor::Group
@@ -13,18 +13,18 @@ module Mwasm
       name 'init'
       usage 'init NAME'
       description 'create a new project'
-      display_on { !Mwasm.config.exist? }
+      display_on { !Mwc.config.exist? }
       argument :name, type: :string, desc: 'project name'
 
       def create_project
         empty_directory(name)
         self.destination_root = name
-        Mwasm.root = destination_root
+        Mwc.root = destination_root
       end
 
       # :nodoc:
-      def create_mwasmrc
-        template('mwasmrc.erb', '.mwasmrc')
+      def create_mwcrc
+        template('mwcrc.erb', '.mwcrc')
       end
 
       # :nodoc:
@@ -38,7 +38,7 @@ module Mwasm
 
       # :nodoc:
       def download_mruby
-        Mwasm.config.reload!
+        Mwc.config.reload!
         # TODO: Allow choose download mode
         inside(mruby_directory.dirname) do
           run("curl -OL #{archive_url}")
@@ -51,7 +51,7 @@ module Mwasm
       private
 
       def version
-        Mwasm.config.mruby.version
+        Mwc.config.mruby.version
       end
 
       # :nodoc:
@@ -65,7 +65,7 @@ module Mwasm
       end
 
       def mruby_directory
-        Mwasm.config.mruby.path
+        Mwc.config.mruby.path
       end
     end
   end

@@ -4,9 +4,9 @@ require 'singleton'
 require 'forwardable'
 require 'rack'
 
-require 'mwasm'
+require 'mwc'
 
-module Mwasm
+module Mwc
   # Static assets server
   class Server
     WASM_RULE = /\.(?:wasm)\z/.freeze
@@ -17,7 +17,7 @@ module Mwasm
         Rack::Static.new(
           ->(_) { [404, {}, []] },
           root: 'dist', # TODO: Set by config
-          index: "#{Mwasm.config.project.name}.html",
+          index: "#{Mwc.config.project.name}.html",
           urls: [''],
           header_rules: [
             [WASM_RULE, WASM_HEADER]
