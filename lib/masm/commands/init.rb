@@ -44,7 +44,7 @@ module Masm
           run("curl -OL #{archive_url}")
           run("tar -zxf #{filename}")
           remove_file(filename)
-          run("mv mruby-#{Masm.config.mruby[:version]} mruby")
+          run("mv mruby-#{Masm.config.mruby.version} mruby")
         end
       end
 
@@ -57,7 +57,7 @@ module Masm
 
       # :nodoc:
       def filename
-        "#{Masm.config.mruby[:version]}.tar.gz"
+        "#{Masm.config.mruby.version}.tar.gz"
       end
     end
   end

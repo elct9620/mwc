@@ -52,7 +52,7 @@ module Masm
       sources = [libmruby].concat(BINARIES)
       # TODO: Load compile options
       sh "emcc #{sources.join(' ')} " \
-         "-o dist/#{Masm.config.name}.#{format}"
+         "-o dist/#{Masm.config.project.name}.#{format}"
     end
   end
 end

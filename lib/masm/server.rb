@@ -17,7 +17,7 @@ module Masm
         Rack::Static.new(
           ->(_) { [404, {}, []] },
           root: 'dist', # TODO: Set by config
-          index: "#{Masm.config.name}.html",
+          index: "#{Masm.config.project.name}.html",
           urls: [''],
           header_rules: [
             [WASM_RULE, WASM_HEADER]

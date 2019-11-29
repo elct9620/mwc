@@ -3,6 +3,8 @@
 require 'forwardable'
 require 'singleton'
 
+require 'masm/project'
+require 'masm/mruby'
 require 'masm'
 
 module Masm
@@ -19,13 +21,14 @@ module Masm
 
     include Singleton
 
-    attr_reader :mruby
+    attr_reader :project, :mruby
 
     # :nodoc:
     def initialize
       @path = Masm.root.join('.masmrc')
-      @name = 'mruby' # TODO: Allow change
-      @mruby = {} # TODO: Allow configure
+      @project = Project.new
+      @mruby = MRuby.new
+
       load_config if exist?
     end
 
