@@ -25,6 +25,7 @@ module Mwc
       # :nodoc:
       def create_mwcrc
         template('mwcrc.erb', '.mwcrc')
+        Mwc.config = Pathname.new(destination_root).join('.mwcrc')
       end
 
       # :nodoc:
@@ -38,7 +39,6 @@ module Mwc
 
       # :nodoc:
       def download_mruby
-        Mwc.config.reload!
         # TODO: Allow choose download mode
         inside(mruby_directory.dirname) do
           run("curl -OL #{archive_url}")
@@ -51,7 +51,7 @@ module Mwc
       private
 
       def version
-        Mwc.config.mruby.version
+        Mwc.mruby.version
       end
 
       # :nodoc:
@@ -65,7 +65,7 @@ module Mwc
       end
 
       def mruby_directory
-        Mwc.config.mruby.path
+        Mwc.mruby.path
       end
     end
   end
