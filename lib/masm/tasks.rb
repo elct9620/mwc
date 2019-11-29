@@ -2,6 +2,7 @@
 
 require 'rake/tasklib'
 
+require 'masm/compile_options'
 require 'masm'
 
 module Masm
@@ -9,6 +10,9 @@ module Masm
   class Tasks < Rake::TaskLib
     SOURCES = FileList['src/**/*.c']
     BINARIES = SOURCES.ext('bc')
+    LIBRARY_JS = FileList['src/js/**/*.lib.js']
+    PRE_JS = FileList['src/js/**/*.pre.js']
+    POST_JS = FileList['src/js/**/*.post.js']
 
     # :nodoc:
     def initialize
@@ -48,13 +52,30 @@ module Masm
 
     # :nodoc:
     def compile(format)
-      libmruby = mruby_directory.join('build/wasm/lib/libmruby.bc')
-      sources = [libmruby].concat(BINARIES)
-      # TODO: Load compile options
-      sh "emcc #{sources.join(' ')} " \
-         "-o dist/#{Masm.config.project.name}.#{format}"
+      do_compile CompileOptions.new(
+        format: format,
+        library_js: LIBRARY_JS,
+        pre_js: PRE_JS,
+        post_js: POST_JS
+      )
     end
 
+    # :nodoc:
+    def do_compile(options)
+      sh "emcc #{sources.join(' ')} #{options}"
+    end
+
+    # :nodoc:
+    def libmruby
+      mruby_directory.join('build/wasm/lib/libmruby.bc')
+    end
+
+    # :nodoc:
+    def sources
+      [libmruby].concat(BINARIES)
+    end
+
+    # :nodoc:
     def mruby_directory
       Masm.config.mruby.path
     end
