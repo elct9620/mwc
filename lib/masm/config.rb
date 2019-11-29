@@ -38,6 +38,16 @@ module Masm
       @path.exist?
     end
 
+    # Reload config
+    #
+    # @since 0.1.0
+    # @api private
+    def reload!
+      return unless exist?
+
+      load_config
+    end
+
     private
 
     # Laod .masmrc config
