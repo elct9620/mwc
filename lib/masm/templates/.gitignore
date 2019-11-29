@@ -1,3 +1,11 @@
+# Useless system files
 .DS_Store
+
+# Vendor
 vendor/mruby
+
+# Compiled
+*.wasm
+*.bc
+*.map
 dist/
