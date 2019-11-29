@@ -40,15 +40,19 @@ module Masm
       def download_mruby
         Masm.config.reload!
         # TODO: Allow choose download mode
-        inside('vendor') do
+        inside(mruby_directory.dirname) do
           run("curl -OL #{archive_url}")
           run("tar -zxf #{filename}")
           remove_file(filename)
-          run("mv mruby-#{Masm.config.mruby.version} mruby")
+          run("mv mruby-#{version} #{mruby_directory}")
         end
       end
 
       private
+
+      def version
+        Masm.config.mruby.version
+      end
 
       # :nodoc:
       def archive_url
@@ -57,7 +61,11 @@ module Masm
 
       # :nodoc:
       def filename
-        "#{Masm.config.mruby.version}.tar.gz"
+        "#{version}.tar.gz"
+      end
+
+      def mruby_directory
+        Masm.config.mruby.path
       end
     end
   end

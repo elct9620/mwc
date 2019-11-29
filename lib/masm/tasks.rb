@@ -12,12 +12,12 @@ module Masm
 
     # :nodoc:
     def initialize
-      return unless Masm.root.join('vendor', 'mruby', 'Rakefile').exist?
+      return unless mruby_directory.join('Rakefile').exist?
 
       namespace :mruby do
         ENV['MRUBY_CONFIG'] = Masm.root.join('config', 'build.rb').to_s
         # TODO: Prevent load error breaks command
-        load Masm.root.join('vendor', 'mruby', 'Rakefile')
+        load mruby_directory.join('Rakefile')
       end
 
       compile_binary_task
@@ -29,7 +29,7 @@ module Masm
     # :nodoc:
     def compile_binary_task
       rule '.bc' => SOURCES do |task|
-        sh 'emcc -I vendor/mruby/include -I include -c ' \
+        sh "emcc -I #{mruby_directory.join('include')} -I include -c " \
            "#{task.source} -o #{task.name}"
       end
     end
@@ -48,11 +48,15 @@ module Masm
 
     # :nodoc:
     def compile(format)
-      libmruby = Masm.root.join('vendor/mruby/build/wasm/lib/libmruby.bc')
+      libmruby = mruby_directory.join('build/wasm/lib/libmruby.bc')
       sources = [libmruby].concat(BINARIES)
       # TODO: Load compile options
       sh "emcc #{sources.join(' ')} " \
          "-o dist/#{Masm.config.project.name}.#{format}"
+    end
+
+    def mruby_directory
+      Masm.config.mruby.path
     end
   end
 end
