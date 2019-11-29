@@ -37,34 +37,12 @@ Execute below command with your project name:
 
 This gem will create a directory `my_mrb` with anything you need to play with mruby on WebAssembly.
 
-### Configure
-
-We use the DSL to specify compile behavior, edit `.mwcrc` to change it.
-
-### Add some source code
-
-```c
-// src/main.c
-
-#include<mruby.h>
-#include<mruby/compile.h>
-#include<mruby/string.h>
-
-int main() {
-  mrb_state* mrb = mrb_open();
-  mrb_load_string(mrb, "puts 'Hello World'");
-  mrb_close(mrb);
-
-  return 0;
-}
-```
-
 ### Source code detect
 
-* `src/**/*.c` the normal c code
-* `src/js/**/*.lib.js` the JavaScript library can call it inside C
-* `src/js/**/*.pre.js` the JavaScript prepend WebAssembly JS
-* `src/js/**/*.post.js` the JavaScript append WebAssembly JS
+* `src/**/*.c` the normal C code
+* `src/js/**/*.lib.js` the JavaScript library can be called in C
+* `src/js/**/*.pre.js` the JavaScript prepend to WebAssembly JS
+* `src/js/**/*.post.js` the JavaScript append to WebAssembly JS
 
 ### Compile
 
@@ -72,11 +50,13 @@ To compile `*.c` to `.wasm` you have to execute `compile` command:
 
     $ mwc compile
 
+You can specify compile environment to change with different options:
+
+    $ mwc compile --env=dev
+
 To see more usage with `help` command:
 
     $ mwc help compile
-
-> Current only support minimal compile feature, the optimize and source map will be added soon.
 
 ### Serve compiled files
 
@@ -86,10 +66,33 @@ The `mwc` has built-in static file server to help preview or debug:
 
 And then, open the `http://localhost:8080` you will see the Emscripten web shell and `Hello World` is printed.
 
-## Roadmap
+## Configure
 
-* [ ] Refactor compile function
-* [ ] Environment-based compile
+We use DSL to define the compile preferences in `.mwcrc`
+
+```ruby
+project.name = 'mruby'
+mruby.version = '2.1.3'
+
+env :dev do
+  project.source_map = true
+end
+```
+
+### Project
+
+|Name|Type|Description
+|----|-----------
+|name|string| The project name, will change the generated file name. ex. `mruby.wasm`
+|shell|string| The shell file template, if you want to use your own html template
+|source_map|boolean| Enable source map for debug
+|options|array| Extra compile options. ex. `-s ALLOW_MEMORY_GROWTH=1`
+
+### mruby
+
+|Name|Type|Description
+|----|-----------
+|version|string| The prefer mruby version
 
 ## Development
 
