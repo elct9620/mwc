@@ -37,6 +37,10 @@ Execute below command with your project name:
 
 This gem will create a directory `my_mrb` with anything you need to play with mruby on WebAssembly.
 
+### Configure
+
+We use the DSL to specify compile behavior, edit `.masmrc` to change it.
+
 ### Add some source code
 
 ```c
@@ -54,6 +58,13 @@ int main() {
   return 0;
 }
 ```
+
+### Source code detect
+
+* `src/**/*.c` the normal c code
+* `src/js/**/*.lib.js` the JavaScript library can call it inside C
+* `src/js/**/*.pre.js` the JavaScript prepend WebAssembly JS
+* `src/js/**/*.post.js` the JavaScript append WebAssembly JS
 
 ### Compile
 
@@ -74,6 +85,11 @@ The `masm` has built-in static file server to help preview or debug:
     $ masm server
 
 And then, open the `http://localhost:8080` you will see the Emscripten web shell and `Hello World` is printed.
+
+## Roadmap
+
+* [ ] Refactor compile function
+* [ ] Environment-based compile
 
 ## Development
 
