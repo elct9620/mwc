@@ -2,11 +2,11 @@
 
 require 'thor/rake_compat'
 
-require 'masm/utils/command'
-require 'masm/tasks'
-require 'masm'
+require 'mwasm/utils/command'
+require 'mwasm/tasks'
+require 'mwasm'
 
-module Masm
+module Mwasm
   module Commands
     # Compile mruby to wasm
     class Compile < Thor::Group
@@ -14,7 +14,7 @@ module Masm
 
       name 'compile'
       description 'compile source code to wasm'
-      display_on { Masm.config.exist? }
+      display_on { Mwasm.config.exist? }
       add_option :format, default: 'html', enum: %w[html js wasm]
 
       def compile

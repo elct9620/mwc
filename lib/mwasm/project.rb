@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Masm
+module Mwasm
   # The project settings
   class Project
     attr_accessor :name, :shell, :source_map

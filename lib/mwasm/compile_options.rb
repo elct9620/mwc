@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'masm'
+require 'mwasm'
 
-module Masm
+module Mwasm
   # The compile options
   class CompileOptions
     # :nodoc:
@@ -32,9 +32,9 @@ module Masm
     # @since 0.2.0
     # @api private
     def setup_shell
-      return if Masm.config.project.shell.nil?
+      return if Mwasm.config.project.shell.nil?
 
-      path = Masm.root.join(Masm.config.project.shell)
+      path = Mwasm.root.join(Mwasm.config.project.shell)
       @options.push "--shell-file #{path}"
     end
 
@@ -43,7 +43,7 @@ module Masm
     # @since 0.2.0
     # @api private
     def setup_source_map
-      return unless Masm.config.project.source_map
+      return unless Mwasm.config.project.source_map
 
       @options.push '-g4 --source-map-base /'
     end
@@ -53,9 +53,9 @@ module Masm
     # @since 0.2.0
     # @api private
     def setup_extra
-      return unless Masm.config.project.options.any?
+      return unless Mwasm.config.project.options.any?
 
-      Masm.config.project.options.each do |name, value|
+      Mwasm.config.project.options.each do |name, value|
         @options.push "-s #{name}=#{value}"
       end
     end
@@ -88,7 +88,7 @@ module Masm
     # @since 0.1.0
     # @api private
     def output(format)
-      @options.push "-o dist/#{Masm.config.project.name}.#{format}"
+      @options.push "-o dist/#{Mwasm.config.project.name}.#{format}"
     end
   end
 end

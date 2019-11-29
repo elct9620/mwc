@@ -2,11 +2,11 @@
 
 require 'rack'
 
-require 'masm/utils/command'
-require 'masm/server'
-require 'masm'
+require 'mwasm/utils/command'
+require 'mwasm/server'
+require 'mwasm'
 
-module Masm
+module Mwasm
   module Commands
     # :nodoc:
     class Server < Thor::Group
@@ -19,7 +19,7 @@ module Masm
       def boot
         Rack::Handler
           .default
-          .run(Masm::Server.new, Port: parent_options['port'])
+          .run(Mwasm::Server.new, Port: parent_options['port'])
       end
     end
   end

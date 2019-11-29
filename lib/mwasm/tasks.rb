@@ -2,10 +2,10 @@
 
 require 'rake/tasklib'
 
-require 'masm/compile_options'
-require 'masm'
+require 'mwasm/compile_options'
+require 'mwasm'
 
-module Masm
+module Mwasm
   # :nodoc:
   class Tasks < Rake::TaskLib
     SOURCES = FileList['src/**/*.c']
@@ -19,7 +19,7 @@ module Masm
       return unless mruby_directory.join('Rakefile').exist?
 
       namespace :mruby do
-        ENV['MRUBY_CONFIG'] = Masm.root.join('config', 'build.rb').to_s
+        ENV['MRUBY_CONFIG'] = Mwasm.root.join('config', 'build.rb').to_s
         # TODO: Prevent load error breaks command
         load mruby_directory.join('Rakefile')
       end
@@ -77,7 +77,7 @@ module Masm
 
     # :nodoc:
     def mruby_directory
-      Masm.config.mruby.path
+      Mwasm.config.mruby.path
     end
   end
 end

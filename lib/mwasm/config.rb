@@ -3,11 +3,11 @@
 require 'forwardable'
 require 'singleton'
 
-require 'masm/project'
-require 'masm/mruby'
-require 'masm'
+require 'mwasm/project'
+require 'mwasm/mruby'
+require 'mwasm'
 
-module Masm
+module Mwasm
   # The compile preferences
   class Config
     class << self
@@ -25,7 +25,7 @@ module Masm
 
     # :nodoc:
     def initialize
-      @path = Masm.root.join('.masmrc')
+      @path = Mwasm.root.join('.mwasmrc')
       @project = Project.new
       @mruby = MRuby.new
 
@@ -61,7 +61,7 @@ module Masm
     # @api private
     def reload!
       # TODO: Update path when root changed
-      @path = Masm.root.join('.masmrc')
+      @path = Mwasm.root.join('.mwasmrc')
       return unless exist?
 
       load_config
@@ -69,7 +69,7 @@ module Masm
 
     private
 
-    # Laod .masmrc config
+    # Laod .mwasmrc config
     #
     # @since 0.1.0
     # @api private

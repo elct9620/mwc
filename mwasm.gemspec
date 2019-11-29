@@ -2,21 +2,21 @@
 
 lib = File.expand_path('lib', __dir__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'masm/version'
+require 'mwasm/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'masm'
-  spec.version       = Masm::VERSION
+  spec.name          = 'mwasm'
+  spec.version       = Mwasm::VERSION
   spec.authors       = ['蒼時弦也']
   spec.email         = ['contact0@frost.tw']
 
   spec.summary       = 'The command line tool to compile mruby to WebAssembly'
   spec.description   = 'The command line tool to compile mruby to WebAssembly'
-  spec.homepage      = 'https://github.com/elct9620/masm'
+  spec.homepage      = 'https://github.com/elct9620/mwasm'
   spec.license       = 'MIT'
 
   spec.metadata['homepage_uri'] = spec.homepage
-  spec.metadata['source_code_uri'] = 'https://github.com/elct9620/masm'
+  spec.metadata['source_code_uri'] = 'https://github.com/elct9620/mwasm'
   # spec.metadata["changelog_uri"] = "TODO"
 
   # Specify which files should be added to the gem when it is released.

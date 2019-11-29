@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Masm do
+RSpec.describe Mwasm do
   it 'has a version number' do
-    expect(Masm::VERSION).not_to be nil
+    expect(Mwasm::VERSION).not_to be nil
   end
 end

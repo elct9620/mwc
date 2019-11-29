@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'masm'
+require 'mwasm'
 
-module Masm
+module Mwasm
   module Utils
     # The command extensions
     module Command
@@ -75,14 +75,14 @@ module Masm
 
         # The thor template source root
         #
-        # @see Masm.source_root
+        # @see Mwasm.source_root
         #
         # @return [String] the source root path
         #
         # @since 0.1.0
         # @api private
         def source_root
-          Masm.source_root
+          Mwasm.source_root
         end
 
         # The command options

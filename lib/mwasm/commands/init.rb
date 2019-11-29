@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'masm/utils/command'
-require 'masm'
+require 'mwasm/utils/command'
+require 'mwasm'
 
-module Masm
+module Mwasm
   module Commands
     # Create a new project
     class Init < Thor::Group
@@ -13,18 +13,18 @@ module Masm
       name 'init'
       usage 'init NAME'
       description 'create a new project'
-      display_on { !Masm.config.exist? }
+      display_on { !Mwasm.config.exist? }
       argument :name, type: :string, desc: 'project name'
 
       def create_project
         empty_directory(name)
         self.destination_root = name
-        Masm.root = destination_root
+        Mwasm.root = destination_root
       end
 
       # :nodoc:
-      def create_masmrc
-        template('masmrc.erb', '.masmrc')
+      def create_mwasmrc
+        template('mwasmrc.erb', '.mwasmrc')
       end
 
       # :nodoc:
@@ -38,7 +38,7 @@ module Masm
 
       # :nodoc:
       def download_mruby
-        Masm.config.reload!
+        Mwasm.config.reload!
         # TODO: Allow choose download mode
         inside(mruby_directory.dirname) do
           run("curl -OL #{archive_url}")
@@ -51,7 +51,7 @@ module Masm
       private
 
       def version
-        Masm.config.mruby.version
+        Mwasm.config.mruby.version
       end
 
       # :nodoc:
@@ -65,7 +65,7 @@ module Masm
       end
 
       def mruby_directory
-        Masm.config.mruby.path
+        Mwasm.config.mruby.path
       end
     end
   end

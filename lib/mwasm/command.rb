@@ -2,20 +2,20 @@
 
 require 'thor'
 
-require 'masm/utils/command_registry'
-require 'masm/config'
-require 'masm/commands/init'
-require 'masm/commands/compile'
-require 'masm/commands/server'
+require 'mwasm/utils/command_registry'
+require 'mwasm/config'
+require 'mwasm/commands/init'
+require 'mwasm/commands/compile'
+require 'mwasm/commands/server'
 
-module Masm
+module Mwasm
   # :nodoc:
   class Command < Thor
     include Utils::CommandRegistry
 
     desc 'version', 'show version'
     def version
-      puts Masm::VERSION
+      puts Mwasm::VERSION
     end
 
     add_command Commands::Init
