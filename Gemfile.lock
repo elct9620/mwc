@@ -2,6 +2,7 @@ PATH
   remote: .
   specs:
     masm (0.1.0)
+      rack (~> 2.0.7)
       rake (~> 10.0)
       thor (~> 0.20.3)
 
@@ -22,6 +23,7 @@ GEM
     parallel (1.18.0)
     parser (2.6.5.0)
       ast (~> 2.4.0)
+    rack (2.0.7)
     rainbow (3.0.0)
     rake (10.5.0)
     rspec (3.9.0)
