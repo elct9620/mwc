@@ -19,12 +19,14 @@ module Masm
 
     include Singleton
 
+    attr_accessor :name
     attr_reader :mruby
 
     # :nodoc:
     def initialize
       @path = Masm.root.join('.masmrc')
-      @mruby = {} # TODO
+      @name = 'mruby' # TODO: Allow change
+      @mruby = {} # TODO: Allow configure
       load_config if exist?
     end
 

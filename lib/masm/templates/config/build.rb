@@ -40,5 +40,5 @@ MRuby::CrossBuild.new('wasm') do |conf|
   end
 
   # TODO: Allow specify customize gembox
-  config.gembox 'default'
+  conf.gembox 'default'
 end

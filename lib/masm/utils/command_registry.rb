@@ -13,17 +13,31 @@ module Masm
       module ClassMethods
         # Add command to thor
         #
-        # @param [Class] the command to add
+        # @param command [Class] the command to add
         #
         # @since 0.1.0
         # @api private
         def add_command(command)
           return unless command.display?
 
+          command.options.each { |args| method_option(*args) }
           register command,
                    command.name,
                    command.name,
                    command.description
+        end
+
+        # Add subcommand to thor
+        #
+        # @param command [Class] the subcommand
+        #
+        # @since 0.1.0
+        # @api private
+        def add_subcommand(command)
+          return unless command.display?
+
+          desc command.name, command.description
+          subcommand command.name, command
         end
       end
     end

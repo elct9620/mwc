@@ -72,6 +72,26 @@ module Masm
         def source_root
           Masm.source_root
         end
+
+        # The command options
+        #
+        # @since 0.1.0
+        # @api private
+        def options
+          @options ||= []
+        end
+
+        # Add command options
+        #
+        # @param name [String|Symbol] the option name
+        # @param options [Hash] the option options
+        #
+        # @since 0.1.0
+        # @api private
+        def add_option(name, options = {})
+          @options ||= []
+          @options.push([name, options])
+        end
       end
     end
   end
