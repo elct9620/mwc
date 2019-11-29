@@ -23,7 +23,7 @@ module Masm
           command.options.each { |args| method_option(*args) }
           register command,
                    command.name,
-                   command.name,
+                   command.usage,
                    command.description
         end
 
@@ -36,7 +36,7 @@ module Masm
         def add_subcommand(command)
           return unless command.display?
 
-          desc command.name, command.description
+          desc command.usage, command.description
           subcommand command.name, command
         end
       end

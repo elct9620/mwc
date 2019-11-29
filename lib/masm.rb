@@ -14,9 +14,21 @@ module Masm
   # @since 0.1.0
   # @api private
   def self.root
-    return Bundler.root if defined?(::Bundler)
+    return @root unless @root.nil?
 
-    Pathname.pwd
+    @root ||= Pathname.pwd
+    @root ||= Bundler.root if defined?(::Bundler)
+    @root
+  end
+
+  # Set project root
+  #
+  # @param path [String|Pathname] the root path
+  #
+  # @since 0.1.0
+  # @api private
+  def self.root=(path)
+    @root = Pathname.new(path)
   end
 
   # The masm config

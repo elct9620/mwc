@@ -45,6 +45,8 @@ module Masm
     # @since 0.1.0
     # @api private
     def reload!
+      # TODO: Update path when root changed
+      @path = Masm.root.join('.masmrc')
       return unless exist?
 
       load_config

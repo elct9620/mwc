@@ -11,9 +11,16 @@ module Masm
       include Utils::Command
 
       name 'init'
+      usage 'init NAME'
       description 'create a new project'
+      display_on { !Masm.config.exist? }
+      argument :name, type: :string, desc: 'project name'
 
-      # TODO: Add create project directory support
+      def create_project
+        empty_directory(name)
+        self.destination_root = name
+        Masm.root = destination_root
+      end
 
       # :nodoc:
       def create_masmrc
@@ -23,6 +30,7 @@ module Masm
       # :nodoc:
       def setup_project
         empty_directory('vendor')
+        empty_directory('dist')
         empty_directory('src/js')
         copy_file('config/build.rb')
         copy_file('.gitignore')

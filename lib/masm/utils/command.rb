@@ -25,6 +25,18 @@ module Masm
           @name = name
         end
 
+        # Set command usage
+        #
+        # @param name [String] the command usage
+        #
+        # @since 0.1.0
+        # @api private
+        def usage(usage = nil)
+          return @usage || name if usage.nil?
+
+          @usage = usage
+        end
+
         # Get or set command description
         #
         # @param desc [String] the command description
