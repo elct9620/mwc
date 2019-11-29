@@ -63,7 +63,7 @@ To compile `*.c` to `.wasm` you have to execute `compile` command:
 
 To see more usage with `help` command:
 
-  $ masm help compile
+    $ masm help compile
 
 > Current only support minimal compile feature, the optimize and source map will be added soon.
 
