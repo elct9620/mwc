@@ -17,7 +17,7 @@ module Mwc
       argument :name, type: :string, desc: 'project name'
 
       def create_project
-        empty_directory(name)
+        directory('app', name)
         self.destination_root = name
         Mwc.root = destination_root
       end
@@ -29,17 +29,9 @@ module Mwc
       end
 
       # :nodoc:
-      def setup_project
-        empty_directory('vendor')
-        empty_directory('dist')
-        empty_directory('src/js')
-        copy_file('config/build.rb')
-        copy_file('.gitignore')
-      end
-
-      # :nodoc:
       def download_mruby
         # TODO: Allow choose download mode
+        empty_directory('vendor')
         inside(mruby_directory.dirname) do
           run("curl -OL #{archive_url}")
           run("tar -zxf #{filename}")
@@ -50,6 +42,7 @@ module Mwc
 
       private
 
+      # :nodoc:
       def version
         Mwc.mruby.version
       end
@@ -64,6 +57,7 @@ module Mwc
         "#{version}.tar.gz"
       end
 
+      # :nodoc:
       def mruby_directory
         Mwc.mruby.path
       end

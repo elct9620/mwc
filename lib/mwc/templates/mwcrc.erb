@@ -1,12 +1,15 @@
-# vim: set filetype=ruby
+# vim: set ft=ruby
+
+# forzen_string_literal: true
 
 # Project settings
 project.name = '<%= name %>'
 # project.shell = 'src/shell.html'
-# project.source_map = true
-
-# -s ALLOW_MEMORY_GROWTH=1
 # project.options '-s ALLOW_MEMORY_GROWTH=1'
 
 # mruby settings
 mruby.version = '2.1.0'
+
+env :dev do
+  project.source_map = true
+end
