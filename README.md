@@ -97,7 +97,8 @@ end
 ## Roadmap
 
 * [ ] Add mruby download options
-* [ ] Add integerate to JavaScript tool
+* [ ] Add integrate to JavaScript tool
+* [ ] Add `watch` command to auto re-compile
 
 ## Development
 
