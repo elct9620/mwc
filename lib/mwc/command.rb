@@ -6,6 +6,7 @@ require 'mwc/utils/command_registry'
 require 'mwc/config'
 require 'mwc/commands/init'
 require 'mwc/commands/compile'
+require 'mwc/commands/watch'
 require 'mwc/commands/server'
 
 module Mwc
@@ -22,6 +23,7 @@ module Mwc
 
     add_command Commands::Init
     add_command Commands::Compile
+    add_command Commands::Watch
     add_command Commands::Server
   end
 end
