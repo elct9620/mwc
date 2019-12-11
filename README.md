@@ -1,6 +1,6 @@
 MWC
 ===
-[![Gem Version](https://badge.fury.io/rb/mwc.svg)](https://badge.fury.io/rb/mwc) [![Build Status](https://travis-ci.com/elct9620/mwc.svg?branch=master)](https://travis-ci.com/elct9620/mwc)
+[![Gem Version](https://badge.fury.io/rb/mwc.svg)](https://badge.fury.io/rb/mwc) [![Build Status](https://travis-ci.com/elct9620/mwc.svg?branch=master)](https://travis-ci.com/elct9620/mwc) [![Maintainability](https://api.codeclimate.com/v1/badges/ecd47b22321830b73d78/maintainability)](https://codeclimate.com/github/elct9620/mwc/maintainability) [![Test Coverage](https://api.codeclimate.com/v1/badges/ecd47b22321830b73d78/test_coverage)](https://codeclimate.com/github/elct9620/mwc/test_coverage)
 
 The tool for the developer to help them create mruby applications on the WebAssembly.
 
