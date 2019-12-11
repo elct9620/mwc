@@ -37,17 +37,37 @@ module Mwc
             # TODO: Allow change output directory
             empty_directory('dist')
 
-            Rake::Task[parent_options['format']].invoke
-            puts 'Compiled!'
+            compile
           end
         end
       end
 
       def start
+        puts 'Starting watch file changes...'
         @listener.start
 
         Signal.trap(:INT) { exit }
         sleep
+      end
+
+      private
+
+      def task
+        Rake::Task[parent_options['format']]
+      end
+
+      def compile
+        task.invoke
+        puts 'Compiled!'
+      rescue RuntimeError
+        puts 'Compile Failed'
+      ensure
+        reset
+      end
+
+      def reset
+        task.all_prerequisite_tasks.map(&:reenable)
+        task.reenable
       end
     end
   end
