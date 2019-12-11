@@ -41,12 +41,11 @@ module Mwc
     # :nodoc:
     def compile_wasm_task
       %i[wasm html js].each do |format|
-        task "mruby.#{format}" => ['mruby:all'].concat(BINARIES) do
+        desc "Compile sources to #{format} WebAssembly"
+        task format => BINARIES do
+          Rake::Task['mruby:all'].invoke
           compile(format)
         end
-
-        desc "Compile sources to #{format} WebAssembly"
-        task format => "mruby.#{format}"
       end
     end
 

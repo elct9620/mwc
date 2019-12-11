@@ -66,7 +66,7 @@ module Mwc
       end
 
       def reset
-        task.all_prerequisite_tasks.map(&:reenable)
+        task.all_prerequisite_tasks.each(&:reenable)
         task.reenable
       end
     end
