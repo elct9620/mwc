@@ -96,9 +96,14 @@ end
 
 ## Roadmap
 
-* [ ] Add mruby download options
-* [ ] Add integrate to JavaScript tool
-* [ ] Add `watch` command to auto re-compile
+* [ ] Unit Test
+* [ ] Download options for mruby
+  * [x] Archive
+  * [ ] Git Submodule
+* [ ] Integrate to Webpack
+* [ ] Watch Mode
+  * [x] Auto re-compile
+  * [ ] Add LiveReload support
 
 ## Development
 
