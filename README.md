@@ -1,6 +1,8 @@
-# Mwc
+MWC
+===
+[![Gem Version](https://badge.fury.io/rb/mwc.svg)](https://badge.fury.io/rb/mwc) [![Build Status](https://travis-ci.com/elct9620/mwc.svg?branch=master)](https://travis-ci.com/elct9620/mwc)
 
-This is a small tool to help people play with mruby on WebAssembly, it let you directly setup a wasm project with mruby.
+The tool for the developer to help them create mruby applications on the WebAssembly.
 
 ## Installation
 
